@@ -2,7 +2,6 @@
 using PUC.Rasterizacao.Model.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Windows;
 
 namespace PUC.Rasterizacao.Controller
@@ -49,10 +48,7 @@ namespace PUC.Rasterizacao.Controller
 
                 foreach (var pontoCalculado in pontosCalculados)
                 {
-                    Thread.Sleep(50);
-
                     Tela.AdicionePixelNaGradeSemConverter(pontoCalculado);
-                    Tela.Atualize();
                 }
 
                 Tela.AdicioneLinha(p1Cache, p2Cache);
