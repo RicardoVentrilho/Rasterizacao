@@ -53,6 +53,26 @@ namespace PUC.Rasterizacao.View.Componentes
 
         #endregion
 
+        public void Limpe()
+        {
+            Children.Clear();
+        }
+
+        public void PintePixel(int x, int y)
+        {
+            var pixel = new Rectangle
+            {
+                Width = _Proporcao,
+                Height = _Proporcao,
+                Fill = Brushes.Black
+            };
+
+            SetLeft(pixel, x * _Proporcao);
+            SetTop(pixel, y * _Proporcao);
+
+            AdicionaElementoFilho(pixel);
+        }
+
         private void AdicionaLinhaHorizontal(int posicao)
         {
             var linha = new Line

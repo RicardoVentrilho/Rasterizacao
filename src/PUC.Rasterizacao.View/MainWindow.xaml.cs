@@ -1,6 +1,6 @@
-﻿using PUC.Rasterizacao.Controller;
+﻿using System.Windows;
+using PUC.Rasterizacao.Controller;
 using PUC.Rasterizacao.Model.Interfaces;
-using System.Windows;
 
 namespace PUC.Rasterizacao.View
 {
@@ -14,6 +14,8 @@ namespace PUC.Rasterizacao.View
             InitializeComponent();
 
             Controlador = new RasterizacaoControlador(this);
+
+            Grade.PintePixel(2, 2);
         }
 
         public RasterizacaoControlador Controlador { get; private set; }

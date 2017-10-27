@@ -9,6 +9,6 @@
         Height="600" 
         Width="600">
     <Grid>
-        <componentes:Grade Tamanho="500" Proporcao="10" PinteLinhas="True" Margin="10"></componentes:Grade>
+        <componentes:Grade x:Name="Grade" Tamanho="500" Proporcao="10" PinteLinhas="True" Margin="10"></componentes:Grade>
     </Grid>
 </Window>
