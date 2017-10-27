@@ -1,8 +1,9 @@
-﻿<Application
-    x:Class="PUC.Rasterizacao.View.App"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:PUC.Rasterizacao.View"
-    RequestedTheme="Light">
-
+﻿<Application x:Class="PUC.Rasterizacao.View.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PUC.Rasterizacao.View"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
 </Application>
