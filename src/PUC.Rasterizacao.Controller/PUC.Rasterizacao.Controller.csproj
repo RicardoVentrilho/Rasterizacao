@@ -41,6 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RasterizacaoControlador.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PUC.Rasterizacao.Model\PUC.Rasterizacao.Model.csproj">
+      <Project>{2e4daad5-caed-495a-8195-a6083d76f6ab}</Project>
+      <Name>PUC.Rasterizacao.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
