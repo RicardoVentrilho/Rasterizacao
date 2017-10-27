@@ -73,6 +73,14 @@ namespace PUC.Rasterizacao.View.Componentes
             AdicionaElementoFilho(pixel);
         }
 
+        public void PintePixel(Point coordenada)
+        {
+            var x = coordenada.X / _Proporcao;
+            var y = coordenada.Y / _Proporcao;
+
+            PintePixel((int)x, (int)y);
+        }
+
         private void AdicionaLinhaHorizontal(int posicao)
         {
             var linha = new Line

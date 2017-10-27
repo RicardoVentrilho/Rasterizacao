@@ -9,6 +9,12 @@
         Height="600" 
         Width="600">
     <Grid>
-        <componentes:Grade x:Name="Grade" Tamanho="500" Proporcao="10" PinteLinhas="True" Margin="10"></componentes:Grade>
+        <componentes:Grade x:Name="Grade" 
+                           Tamanho="500" 
+                           Proporcao="10" 
+                           PinteLinhas="True" 
+                           Margin="10"
+                           MouseLeftButtonDown="CliqueBotaoEsquerdo" 
+                           Background="White"></componentes:Grade>
     </Grid>
 </Window>
