@@ -19,11 +19,26 @@ namespace PUC.Rasterizacao.View
 
         public RasterizacaoControlador Controlador { get; private set; }
 
+        public void AdicionePixelNaGrade(Point coordenada)
+        {
+            Grade.PintePixel(coordenada);
+        }
+
+        public void Limpe()
+        {
+            Grade.Limpe();
+        }
+
+        public void AdicioneLinha(Point p1, Point p2)
+        {
+            Grade.PinteLinha(p1, p2);
+        }
+
         private void CliqueBotaoEsquerdo(object sender, MouseButtonEventArgs e)
         {
             var coordenada = e.GetPosition(Grade);
 
-            Grade.PintePixel(coordenada);
+            Controlador.AdicionePixel(coordenada);
         }
     }
 }

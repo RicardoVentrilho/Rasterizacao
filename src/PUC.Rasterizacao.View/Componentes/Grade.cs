@@ -81,6 +81,26 @@ namespace PUC.Rasterizacao.View.Componentes
             PintePixel((int)x, (int)y);
         }
 
+        public void PinteLinha(Point p1, Point p2)
+        {
+            var metadeDoPixel = _Proporcao / 2;
+            var x1 = (int)p1.X / _Proporcao;
+            var x2 = (int)p2.X / _Proporcao;
+            var y1 = (int)p1.Y / _Proporcao;
+            var y2 = (int)p2.Y / _Proporcao;
+
+            var linha = new Line
+            {
+                X1 = (x1 * _Proporcao) + metadeDoPixel,
+                X2 = (x2 * _Proporcao) + metadeDoPixel,
+                Y1 = (y1 * _Proporcao) + metadeDoPixel,
+                Y2 = (y2 * _Proporcao) + metadeDoPixel,
+                Stroke = Brushes.Red
+            };
+
+            AdicionaElementoFilho(linha);
+        }
+
         private void AdicionaLinhaHorizontal(int posicao)
         {
             var linha = new Line
