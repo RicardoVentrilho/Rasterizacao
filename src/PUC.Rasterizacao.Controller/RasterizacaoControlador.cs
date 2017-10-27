@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using PUC.Rasterizacao.Model.Algoritmos;
 using PUC.Rasterizacao.Model.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Windows;
 
 namespace PUC.Rasterizacao.Controller
 {
@@ -28,16 +31,33 @@ namespace PUC.Rasterizacao.Controller
         {
             if (PontosDaLinha.Count < QUANTIDADE_MAXIMA_DE_PONTOS_PARA_LINHA)
             {
+                if (!PontosDaLinha.Any())
+                {
+                    Tela.Limpe();
+                }
+
                 PontosDaLinha.Add(coordenada);
                 Tela.AdicionePixelNaGrade(coordenada);
             }
 
             if (PontosDaLinha.Count == QUANTIDADE_MAXIMA_DE_PONTOS_PARA_LINHA)
             {
-                var p1 = PontosDaLinha[0];
-                var p2 = PontosDaLinha[1];
+                var p1Cache = PontosDaLinha[0];
+                var p2Cache = PontosDaLinha[1];
 
-                Tela.AdicioneLinha(p1, p2);
+                var pontosCalculados = Bresenham.Calcule(PontosDaLinha[0], PontosDaLinha[1]);
+
+                foreach (var pontoCalculado in pontosCalculados)
+                {
+                    Thread.Sleep(50);
+
+                    Tela.AdicionePixelNaGradeSemConverter(pontoCalculado);
+                    Tela.Atualize();
+                }
+
+                Tela.AdicioneLinha(p1Cache, p2Cache);
+
+                PontosDaLinha.Clear();
             }
         }
     }

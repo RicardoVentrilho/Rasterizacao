@@ -8,13 +8,13 @@
         Title="MainWindow" 
         Height="600" 
         Width="600">
-    <Grid>
+    <Grid x:Name="Window">
         <componentes:Grade x:Name="Grade" 
                            Tamanho="500" 
                            Proporcao="10" 
                            PinteLinhas="True" 
-                           Margin="10"
+                           Margin="48,10,44,59"
                            MouseLeftButtonDown="CliqueBotaoEsquerdo" 
-                           Background="White"></componentes:Grade>
+                           Background="White"/>
     </Grid>
 </Window>

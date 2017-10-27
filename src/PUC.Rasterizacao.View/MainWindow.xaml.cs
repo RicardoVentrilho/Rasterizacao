@@ -1,7 +1,7 @@
-﻿using System.Windows;
-using System.Windows.Input;
-using PUC.Rasterizacao.Controller;
+﻿using PUC.Rasterizacao.Controller;
 using PUC.Rasterizacao.Model.Interfaces;
+using System.Windows;
+using System.Windows.Input;
 
 namespace PUC.Rasterizacao.View
 {
@@ -32,6 +32,16 @@ namespace PUC.Rasterizacao.View
         public void AdicioneLinha(Point p1, Point p2)
         {
             Grade.PinteLinha(p1, p2);
+        }
+
+        public void AdicionePixelNaGradeSemConverter(Point pontoCalculado)
+        {
+            Grade.PintePixelSemCorverter(pontoCalculado);
+        }
+
+        public void Atualize()
+        {
+            Grade.Atualize();
         }
 
         private void CliqueBotaoEsquerdo(object sender, MouseButtonEventArgs e)

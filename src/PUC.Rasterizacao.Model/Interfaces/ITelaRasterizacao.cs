@@ -9,5 +9,9 @@ namespace PUC.Rasterizacao.Model.Interfaces
         void Limpe();
 
         void AdicioneLinha(Point p1, Point p2);
+
+        void AdicionePixelNaGradeSemConverter(Point pontoCalculado);
+
+        void Atualize();
     }
 }

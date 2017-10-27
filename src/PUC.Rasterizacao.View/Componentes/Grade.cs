@@ -1,7 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace PUC.Rasterizacao.View.Componentes
 {
@@ -36,18 +38,7 @@ namespace PUC.Rasterizacao.View.Componentes
             set
             {
                 _ComLinhas = value;
-
-                if (_ComLinhas)
-                {
-                    int quantidadeDeLinhas = Tamanho / _Proporcao;
-
-
-                    for (int i = 0; i <= quantidadeDeLinhas; i++)
-                    {
-                        AdicionaLinhaHorizontal(i * _Proporcao);
-                        AdicionaLinhaVertical(i * _Proporcao);
-                    }
-                }
+                DesenheLinhas();
             }
         }
 
@@ -56,6 +47,7 @@ namespace PUC.Rasterizacao.View.Componentes
         public void Limpe()
         {
             Children.Clear();
+            DesenheLinhas();
         }
 
         public void PintePixel(int x, int y)
@@ -71,6 +63,16 @@ namespace PUC.Rasterizacao.View.Componentes
             SetTop(pixel, y * _Proporcao);
 
             AdicionaElementoFilho(pixel);
+        }
+
+        public void Atualize()
+        {
+            Dispatcher.Invoke(DispatcherPriority.Render, new Action(() => { }));
+        }
+
+        public void PintePixelSemCorverter(Point ponto)
+        {
+            PintePixel((int)ponto.X, (int)ponto.Y);
         }
 
         public void PintePixel(Point coordenada)
@@ -132,6 +134,21 @@ namespace PUC.Rasterizacao.View.Componentes
         private void AdicionaElementoFilho(UIElement elemento)
         {
             Children.Add(elemento);
+        }
+
+        private void DesenheLinhas()
+        {
+            if (_ComLinhas)
+            {
+                int quantidadeDeLinhas = Tamanho / _Proporcao;
+
+
+                for (int i = 0; i <= quantidadeDeLinhas; i++)
+                {
+                    AdicionaLinhaHorizontal(i * _Proporcao);
+                    AdicionaLinhaVertical(i * _Proporcao);
+                }
+            }
         }
     }
 }
