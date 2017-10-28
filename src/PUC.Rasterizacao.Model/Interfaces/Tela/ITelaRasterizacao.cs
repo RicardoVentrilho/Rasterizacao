@@ -13,5 +13,9 @@ namespace PUC.Rasterizacao.Model.Interfaces
         void AdicionePixelNaGradeSemConverter(Point pontoCalculado);
 
         void Atualize();
+
+        void ConvertaPontoParaGrade(Point ponto);
+
+        double CalculeDistanciaEntreDoisPontos(Point centro, Point extremo);
     }
 }

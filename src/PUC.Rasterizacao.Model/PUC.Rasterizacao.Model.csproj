@@ -41,8 +41,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Algoritmos\Bresenham.cs" />
-    <Compile Include="Interfaces\ITelaRasterizacao.cs" />
+    <Compile Include="Algoritmos\Circunferencia.cs" />
+    <Compile Include="Algoritmos\Elipse.cs" />
+    <Compile Include="Interfaces\Negocio\IRasterizacao.cs" />
+    <Compile Include="Rasterizacao.cs" />
+    <Compile Include="Algoritmos\Reta.cs" />
+    <Compile Include="Interfaces\Tela\ITelaRasterizacao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

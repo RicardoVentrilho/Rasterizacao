@@ -65,6 +65,12 @@ namespace PUC.Rasterizacao.View.Componentes
             AdicionaElementoFilho(pixel);
         }
 
+        public void ConvertaPonto(Point ponto)
+        {
+            ponto.X = ponto.X / _Proporcao;
+            ponto.Y = ponto.Y / _Proporcao;
+        }
+
         public void Atualize()
         {
             Dispatcher.Invoke(DispatcherPriority.Render, new Action(() => { }));

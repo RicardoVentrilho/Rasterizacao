@@ -29,9 +29,9 @@ namespace PUC.Rasterizacao.View
             Grade.Limpe();
         }
 
-        public void AdicioneLinha(Point p1, Point p2)
+        public void AdicioneLinha(Point inicio, Point fim)
         {
-            Grade.PinteLinha(p1, p2);
+            Grade.PinteLinha(inicio, fim);
         }
 
         public void AdicionePixelNaGradeSemConverter(Point pontoCalculado)
@@ -48,7 +48,12 @@ namespace PUC.Rasterizacao.View
         {
             var coordenada = e.GetPosition(Grade);
 
-            Controlador.AdicionePixel(coordenada);
+            Controlador.AdicionePixelParaLinha(coordenada);
+        }
+
+        public void ConvertaPontoParaGrade(Point ponto)
+        {
+            Grade.ConvertaPonto(ponto);
         }
     }
 }
