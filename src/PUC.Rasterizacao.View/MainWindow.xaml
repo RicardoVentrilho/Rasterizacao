@@ -5,16 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:componentes="clr-namespace:PUC.Rasterizacao.View.Componentes"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="Rasterização" 
         Height="600" 
         Width="600">
     <Grid x:Name="Window">
-        <componentes:Grade x:Name="Grade" 
+
+        <Grid HorizontalAlignment="Left" Height="549" Margin="10,10,0,0" VerticalAlignment="Top" Width="572">
+            <componentes:Grade x:Name="Grade" 
                            Tamanho="500" 
                            Proporcao="10" 
                            PinteLinhas="True" 
-                           Margin="48,10,44,59"
+                           Margin="32,10,40,39"
                            MouseLeftButtonDown="CliqueBotaoEsquerdo" 
                            Background="White"/>
+            <ComboBox HorizontalAlignment="Left" Margin="32,520,0,0" VerticalAlignment="Top" Width="500"/>
+        </Grid>
     </Grid>
 </Window>

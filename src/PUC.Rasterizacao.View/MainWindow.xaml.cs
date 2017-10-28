@@ -2,6 +2,7 @@
 using PUC.Rasterizacao.Model.Interfaces;
 using System.Windows;
 using System.Windows.Input;
+using System;
 
 namespace PUC.Rasterizacao.View
 {
@@ -54,6 +55,11 @@ namespace PUC.Rasterizacao.View
         public void ConvertaPontoParaGrade(Point ponto)
         {
             Grade.ConvertaPonto(ponto);
+        }
+
+        public double CalculeDistanciaEntreDoisPontos(Point centro, Point extremo)
+        {
+            throw new NotImplementedException();
         }
     }
 }
