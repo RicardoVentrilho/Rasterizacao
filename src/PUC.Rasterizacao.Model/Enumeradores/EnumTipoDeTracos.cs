@@ -1,16 +1,13 @@
-﻿using System.ComponentModel;
-
-namespace PUC.Rasterizacao.Model.Enumeradores
+﻿namespace PUC.Rasterizacao.Model.Enumeradores
 {
     public enum EnumTipoDeTraco
     {
-        [Description("Reta")]
-        RETA,
+        NENHUM = -1,
 
-        [Description("Circunferência")]
-        CIRCUNFERENCIA,
+        RETA = 0,
 
-        [Description("Elipse")]
-        ELIPSE
+        CIRCUNFERENCIA = 1,
+
+        ELIPSE = 2
     }
 }

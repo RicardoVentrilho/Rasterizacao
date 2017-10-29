@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows;
 
 namespace PUC.Rasterizacao.Model.Algoritmos
@@ -60,9 +59,7 @@ namespace PUC.Rasterizacao.Model.Algoritmos
         ///TODO: Método provisório
         public static List<Point> Calcule(Point inicio, Point fim)
         {
-            throw new NotImplementedException();
-
-            ////return CalculePontos((int)(p1.X / 10), (int)(p2.X / 10), (int)(p1.Y / 10), (int)(p2.Y / 10));
+            return CalculePontos((int)inicio.X, (int)fim.X, (int)inicio.Y, (int)fim.Y);
         }
     }
 }

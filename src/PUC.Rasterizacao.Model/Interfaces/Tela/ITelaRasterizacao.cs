@@ -8,13 +8,9 @@ namespace PUC.Rasterizacao.Model.Interfaces
 
         void Limpe();
 
-        void AdicioneLinha(Point p1, Point p2);
-
-        void AdicionePixelNaGradeSemConverter(Point pontoCalculado);
+        void AdicioneLinha(Point inicio, Point fim);
 
         void Atualize();
-
-        void ConvertaPontoParaGrade(Point ponto);
 
         double CalculeDistanciaEntreDoisPontos(Point centro, Point extremo);
     }

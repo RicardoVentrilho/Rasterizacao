@@ -58,27 +58,11 @@ namespace PUC.Rasterizacao.View
             });
         }
 
-        public void AdicionePixelNaGradeSemConverter(Point pontoCalculado)
-        {
-            Proxy.Execute(() =>
-            {
-                Grade.PintePixelSemCorverter(pontoCalculado);
-            });
-        }
-
         public void Atualize()
         {
             Proxy.Execute(() =>
             {
                 Grade.Atualize();
-            });
-        }
-
-        public void ConvertaPontoParaGrade(Point ponto)
-        {
-            Proxy.Execute(() =>
-            {
-                Grade.ConvertaPonto(ponto);
             });
         }
 
@@ -97,7 +81,9 @@ namespace PUC.Rasterizacao.View
             {
                 var coordenada = e.GetPosition(Grade);
 
-                Controlador.AdicionePixelParaLinha(coordenada);
+                var ponto = Grade.ConvertaCoordenada(coordenada);
+
+                Controlador.AdicionePonto(ponto);
             });
         }
 
@@ -112,7 +98,6 @@ namespace PUC.Rasterizacao.View
         }
 
         #endregion
-
 
         #region "MÉTODOS PRIVADOS"
 
