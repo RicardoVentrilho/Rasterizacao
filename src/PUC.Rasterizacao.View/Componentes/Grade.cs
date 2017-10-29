@@ -98,7 +98,8 @@ namespace PUC.Rasterizacao.View.Componentes
                 X2 = (x2 * _Proporcao) + metadeDoPixel,
                 Y1 = (y1 * _Proporcao) + metadeDoPixel,
                 Y2 = (y2 * _Proporcao) + metadeDoPixel,
-                Stroke = Brushes.Red
+                Stroke = Brushes.Red,
+                StrokeThickness = 2
             };
 
             AdicionaElementoFilho(linha);
