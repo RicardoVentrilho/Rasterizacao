@@ -1,4 +1,5 @@
 ﻿using PUC.Rasterizacao.Model.Algoritmos;
+using PUC.Rasterizacao.Model.Enumeradores;
 using PUC.Rasterizacao.Model.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -7,17 +8,6 @@ using System.Windows;
 
 namespace PUC.Rasterizacao.Controller
 {
-    #region "ENUM"
-
-    public enum EnumPosicao
-    {
-        PRIMEIRO,
-        SEGUNDO,
-        TERCEIRO
-    };
-
-    #endregion
-
     public class RasterizacaoControlador
     {
         #region "CONTANTES"
@@ -25,6 +15,12 @@ namespace PUC.Rasterizacao.Controller
         private const int QUANTIDADE_MAXIMA_DE_PONTOS_PARA_LINHA = 2;
         private const int QUANTIDADE_MAXIMA_DE_PONTOS_PARA_CIRCUNFERENCIA = 2;
         private const int QUANTIDADE_MAXIMA_DE_PONTOS_PARA_ELIPSE = 3;
+
+        #endregion
+
+        #region "CAMPOS"
+
+        private EnumTipoDeTraco _TipoDeTraco = EnumTipoDeTraco.NENHUM;
 
         #endregion
 
@@ -51,19 +47,51 @@ namespace PUC.Rasterizacao.Controller
 
         public List<Point> PontosDaCircunferencia { get; private set; }
 
+        public EnumTipoDeTraco TipoDeTraco
+        {
+            get => _TipoDeTraco;
+            set
+            {
+                Limpe();
+                _TipoDeTraco = value;
+            }
+        }
+
         #endregion
 
         #region "MÉTODOS PÚBLICOS"
 
         public void Limpe()
         {
+            PontosDaLinha.Clear();
+            PontosDaElipse.Clear();
+            PontosDaCircunferencia.Clear();
+
             Tela.Limpe();
         }
 
-        public void AdicionePixelParaCircunferencia(Point coordenada)
+        public void AdicionePonto(Point ponto)
         {
-            Tela.ConvertaPontoParaGrade(coordenada);
+            switch (TipoDeTraco)
+            {
+                case EnumTipoDeTraco.RETA:
+                    AdicionePixelParaReta(ponto);
+                    break;
+                case EnumTipoDeTraco.CIRCUNFERENCIA:
+                    AdicionePixelParaCircunferencia(ponto);
+                    break;
+                case EnumTipoDeTraco.ELIPSE:
+                    AdicionePixelParaElipse(ponto);
+                    break;
+                default:
+                    throw new ArgumentException("Tipo de traço inválido, selecione tipo de traço na lista abaixo!");
+            }
+        }
 
+        #endregion
+
+        private void AdicionePixelParaCircunferencia(Point ponto)
+        {
             if (PontosDaCircunferencia.Count < QUANTIDADE_MAXIMA_DE_PONTOS_PARA_CIRCUNFERENCIA)
             {
                 if (!PontosDaCircunferencia.Any())
@@ -71,8 +99,8 @@ namespace PUC.Rasterizacao.Controller
                     Tela.Limpe();
                 }
 
-                PontosDaCircunferencia.Add(coordenada);
-                Tela.AdicionePixelNaGrade(coordenada);
+                PontosDaCircunferencia.Add(ponto);
+                Tela.AdicionePixelNaGrade(ponto);
             }
 
             if (PontosDaCircunferencia.Count == QUANTIDADE_MAXIMA_DE_PONTOS_PARA_CIRCUNFERENCIA)
@@ -86,17 +114,14 @@ namespace PUC.Rasterizacao.Controller
             }
         }
 
-        public void AdicionePixelParaElipse(Point coordenada)
+        private void AdicionePixelParaElipse(Point ponto)
         {
-            Tela.ConvertaPontoParaGrade(coordenada);
-
             throw new NotImplementedException();
         }
 
-        public void AdicionePixelParaLinha(Point coordenada)
+        //// TODO: Método grande, refatorar!
+        private void AdicionePixelParaReta(Point ponto)
         {
-            Tela.ConvertaPontoParaGrade(coordenada);
-
             if (PontosDaLinha.Count < QUANTIDADE_MAXIMA_DE_PONTOS_PARA_LINHA)
             {
                 if (!PontosDaLinha.Any())
@@ -104,8 +129,9 @@ namespace PUC.Rasterizacao.Controller
                     Tela.Limpe();
                 }
 
-                PontosDaLinha.Add(coordenada);
-                Tela.AdicionePixelNaGrade(coordenada);
+                PontosDaLinha.Add(ponto);
+
+                Tela.AdicionePixelNaGrade(ponto);
             }
 
             if (PontosDaLinha.Count == QUANTIDADE_MAXIMA_DE_PONTOS_PARA_LINHA)
@@ -116,24 +142,19 @@ namespace PUC.Rasterizacao.Controller
                 var trajeto = Reta.Calcule(inicio, fim);
 
                 DesenheTrajeto(trajeto);
+
+                Tela.AdicioneLinha(inicio, fim);
+
+                PontosDaLinha.Clear();
             }
         }
 
-        #endregion
-
         private void DesenheTrajeto(List<Point> trajeto)
         {
-            var inicioCache = PontosDaLinha[(int)EnumPosicao.PRIMEIRO];
-            var fimCache = PontosDaLinha[(int)EnumPosicao.SEGUNDO];
-
             foreach (var ponto in trajeto)
             {
-                Tela.AdicionePixelNaGradeSemConverter(ponto);
+                Tela.AdicionePixelNaGrade(ponto);
             }
-
-            Tela.AdicioneLinha(inicioCache, fimCache);
-
-            PontosDaLinha.Clear();
         }
     }
 }

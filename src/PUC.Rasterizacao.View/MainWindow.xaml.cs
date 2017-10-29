@@ -1,5 +1,8 @@
 ﻿using PUC.Rasterizacao.Controller;
+using PUC.Rasterizacao.Model.Enumeradores;
 using PUC.Rasterizacao.Model.Interfaces;
+using PUC.Rasterizacao.View.Infraestrutura;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -10,50 +13,99 @@ namespace PUC.Rasterizacao.View
     /// </summary>
     public partial class MainWindow : Window, ITelaRasterizacao
     {
+        #region "INICIALIZA TELA"
+
         public MainWindow()
         {
+            Controlador = new RasterizacaoControlador(this);
+
             InitializeComponent();
 
-            Controlador = new RasterizacaoControlador(this);
+            AtualizeTela();
         }
+
+        #endregion
+
+        #region "PROPRIEDADES"
 
         public RasterizacaoControlador Controlador { get; private set; }
 
+        #endregion
+
+        #region "MÉTODOS PÚBLICOS"
+
         public void AdicionePixelNaGrade(Point coordenada)
         {
-            Grade.PintePixel(coordenada);
+            Proxy.Execute(() =>
+            {
+                Grade.PintePixel(coordenada);
+            });
         }
 
         public void Limpe()
         {
-            Grade.Limpe();
+            Proxy.Execute(() =>
+            {
+                Grade.Limpe();
+            });
         }
 
         public void AdicioneLinha(Point inicio, Point fim)
         {
-            Grade.PinteLinha(inicio, fim);
-        }
-
-        public void AdicionePixelNaGradeSemConverter(Point pontoCalculado)
-        {
-            Grade.PintePixelSemCorverter(pontoCalculado);
+            Proxy.Execute(() =>
+            {
+                Grade.PinteLinha(inicio, fim);
+            });
         }
 
         public void Atualize()
         {
-            Grade.Atualize();
+            Proxy.Execute(() =>
+            {
+                Grade.Atualize();
+            });
         }
 
-        private void CliqueBotaoEsquerdo(object sender, MouseButtonEventArgs e)
+        public double CalculeDistanciaEntreDoisPontos(Point centro, Point extremo)
         {
-            var coordenada = e.GetPosition(Grade);
-
-            Controlador.AdicionePixelParaLinha(coordenada);
+            throw new NotImplementedException();
         }
 
-        public void ConvertaPontoParaGrade(Point ponto)
+        #endregion
+
+        #region "EVENTOS"
+
+        private void AoClicarNaGrade(object sender, MouseButtonEventArgs e)
         {
-            Grade.ConvertaPonto(ponto);
+            Proxy.Execute(() =>
+            {
+                var coordenada = e.GetPosition(Grade);
+
+                var ponto = Grade.ConvertaCoordenada(coordenada);
+
+                Controlador.AdicionePonto(ponto);
+            });
         }
+
+        private void AoSelecionarTipoDeTracos(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            Proxy.Execute(() =>
+            {
+                var tipoDeTraco = (EnumTipoDeTraco)TipoDeTracos.SelectedItem;
+
+                Controlador.TipoDeTraco = tipoDeTraco;
+            });
+        }
+
+        #endregion
+
+        #region "MÉTODOS PRIVADOS"
+
+        private void AtualizeTela()
+        {
+            TipoDeTracos.ItemsSource = new[] { EnumTipoDeTraco.RETA, EnumTipoDeTraco.ELIPSE, EnumTipoDeTraco.CIRCUNFERENCIA };
+        }
+
+        #endregion
     }
 }

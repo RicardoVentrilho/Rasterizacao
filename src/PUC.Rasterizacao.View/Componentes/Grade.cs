@@ -76,15 +76,10 @@ namespace PUC.Rasterizacao.View.Componentes
             Dispatcher.Invoke(DispatcherPriority.Render, new Action(() => { }));
         }
 
-        public void PintePixelSemCorverter(Point ponto)
+        public void PintePixel(Point ponto)
         {
-            PintePixel((int)ponto.X, (int)ponto.Y);
-        }
-
-        public void PintePixel(Point coordenada)
-        {
-            var x = coordenada.X / _Proporcao;
-            var y = coordenada.Y / _Proporcao;
+            var x = ponto.X;
+            var y = ponto.Y;
 
             PintePixel((int)x, (int)y);
         }
@@ -92,10 +87,10 @@ namespace PUC.Rasterizacao.View.Componentes
         public void PinteLinha(Point p1, Point p2)
         {
             var metadeDoPixel = _Proporcao / 2;
-            var x1 = (int)p1.X / _Proporcao;
-            var x2 = (int)p2.X / _Proporcao;
-            var y1 = (int)p1.Y / _Proporcao;
-            var y2 = (int)p2.Y / _Proporcao;
+            var x1 = (int)p1.X;
+            var x2 = (int)p2.X;
+            var y1 = (int)p1.Y;
+            var y2 = (int)p2.Y;
 
             var linha = new Line
             {
@@ -107,6 +102,17 @@ namespace PUC.Rasterizacao.View.Componentes
             };
 
             AdicionaElementoFilho(linha);
+        }
+
+        public Point ConvertaCoordenada(Point coordenada)
+        {
+            var ponto = new Point
+            {
+                X = Math.Truncate(coordenada.X / _Proporcao),
+                Y = Math.Truncate(coordenada.Y / _Proporcao)
+            };
+
+            return ponto;
         }
 
         private void AdicionaLinhaHorizontal(int posicao)
