@@ -1,4 +1,5 @@
 ﻿using PUC.Rasterizacao.Controller;
+using PUC.Rasterizacao.Model.Enumeradores;
 using PUC.Rasterizacao.Model.Interfaces;
 using PUC.Rasterizacao.View.Infraestrutura;
 using System;
@@ -16,9 +17,11 @@ namespace PUC.Rasterizacao.View
 
         public MainWindow()
         {
+            Controlador = new RasterizacaoControlador(this);
+
             InitializeComponent();
 
-            Controlador = new RasterizacaoControlador(this);
+            AtualizeTela();
         }
 
         #endregion
@@ -96,12 +99,9 @@ namespace PUC.Rasterizacao.View
             });
         }
 
-        private void AoCarregarWindow(object sender, RoutedEventArgs e)
+        private void AtualizeTela()
         {
-            Proxy.Execute(() =>
-            {
-
-            });
+            TipoDeTracos.ItemsSource = new[] { EnumTipoDeTracos.RETA, EnumTipoDeTracos.ELIPSE, EnumTipoDeTracos.CIRCUNFERENCIA };
         }
     }
 }

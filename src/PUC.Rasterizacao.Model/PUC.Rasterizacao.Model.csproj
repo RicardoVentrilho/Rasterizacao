@@ -44,6 +44,7 @@
     <Compile Include="Algoritmos\Circunferencia.cs" />
     <Compile Include="Algoritmos\Elipse.cs" />
     <Compile Include="Enumeradores\EnumPosicao.cs" />
+    <Compile Include="Enumeradores\EnumTipoDeTracos.cs" />
     <Compile Include="Interfaces\Negocio\IRasterizacao.cs" />
     <Compile Include="Rasterizacao.cs" />
     <Compile Include="Algoritmos\Reta.cs" />

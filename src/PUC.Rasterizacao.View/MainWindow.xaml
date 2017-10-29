@@ -7,8 +7,7 @@
         mc:Ignorable="d"
         Title="Rasterização" 
         Height="600" 
-        Width="600"
-        Loaded="AoCarregarWindow">
+        Width="600">
     <Grid x:Name="Window">
         <Grid HorizontalAlignment="Left" Height="549" Margin="10,10,0,0" VerticalAlignment="Top" Width="572">
             <componentes:Grade x:Name="Grade" 
@@ -16,7 +15,7 @@
                            Proporcao="10" 
                            PinteLinhas="True" 
                            Margin="32,10,40,39"
-                           MouseLeftButtonDown="CliqueBotaoEsquerdo" 
+                           MouseLeftButtonDown="AoClicarNaGrade" 
                            Background="White"/>
             <ComboBox x:Name="TipoDeTracos" HorizontalAlignment="Left" Margin="32,520,0,0" VerticalAlignment="Top" Width="500"/>
         </Grid>
