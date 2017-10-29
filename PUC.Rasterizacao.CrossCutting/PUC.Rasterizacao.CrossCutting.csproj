@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2E4DAAD5-CAED-495A-8195-A6083D76F6AB}</ProjectGuid>
+    <ProjectGuid>{67C62440-B662-46B9-9092-39E674E65DBD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PUC.Rasterizacao.Model</RootNamespace>
-    <AssemblyName>PUC.Rasterizacao.Model</AssemblyName>
+    <RootNamespace>PUC.Rasterizacao.CrossCutting</RootNamespace>
+    <AssemblyName>PUC.Rasterizacao.CrossCutting</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,7 +24,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -38,16 +38,9 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Algoritmos\Circunferencia.cs" />
-    <Compile Include="Algoritmos\Elipse.cs" />
-    <Compile Include="Enumeradores\EnumPosicao.cs" />
-    <Compile Include="Interfaces\Negocio\IRasterizacao.cs" />
-    <Compile Include="Rasterizacao.cs" />
-    <Compile Include="Algoritmos\Reta.cs" />
-    <Compile Include="Interfaces\Tela\ITelaRasterizacao.cs" />
+    <Compile Include="FabricaGenerica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

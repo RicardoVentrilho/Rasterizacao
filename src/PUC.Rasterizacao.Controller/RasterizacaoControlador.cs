@@ -1,4 +1,5 @@
 ﻿using PUC.Rasterizacao.Model.Algoritmos;
+using PUC.Rasterizacao.Model.Enumeradores;
 using PUC.Rasterizacao.Model.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -7,17 +8,6 @@ using System.Windows;
 
 namespace PUC.Rasterizacao.Controller
 {
-    #region "ENUM"
-
-    public enum EnumPosicao
-    {
-        PRIMEIRO,
-        SEGUNDO,
-        TERCEIRO
-    };
-
-    #endregion
-
     public class RasterizacaoControlador
     {
         #region "CONTANTES"
