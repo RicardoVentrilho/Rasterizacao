@@ -18,6 +18,12 @@ namespace PUC.Rasterizacao.Controller
 
         #endregion
 
+        #region "CAMPOS"
+
+        private EnumTipoDeTraco _TipoDeTraco;
+
+        #endregion
+
         #region "CONSTRUTOR"
 
         public RasterizacaoControlador(ITelaRasterizacao tela)
@@ -41,12 +47,26 @@ namespace PUC.Rasterizacao.Controller
 
         public List<Point> PontosDaCircunferencia { get; private set; }
 
+        public EnumTipoDeTraco TipoDeTraco
+        {
+            get => TipoDeTraco;
+            set
+            {
+                Limpe();
+                _TipoDeTraco = value;
+            }
+        }
+
         #endregion
 
         #region "MÉTODOS PÚBLICOS"
 
         public void Limpe()
         {
+            PontosDaLinha.Clear();
+            PontosDaElipse.Clear();
+            PontosDaCircunferencia.Clear();
+
             Tela.Limpe();
         }
 

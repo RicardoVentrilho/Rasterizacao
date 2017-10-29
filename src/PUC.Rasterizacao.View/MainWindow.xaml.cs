@@ -89,6 +89,8 @@ namespace PUC.Rasterizacao.View
 
         #endregion
 
+        #region "EVENTOS"
+
         private void AoClicarNaGrade(object sender, MouseButtonEventArgs e)
         {
             Proxy.Execute(() =>
@@ -99,9 +101,26 @@ namespace PUC.Rasterizacao.View
             });
         }
 
+        private void AoSelecionarTipoDeTracos(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            Proxy.Execute(() =>
+            {
+                var tipoDeTraco = (EnumTipoDeTraco)TipoDeTracos.SelectedItem;
+
+                Controlador.TipoDeTraco = tipoDeTraco;
+            });
+        }
+
+        #endregion
+
+
+        #region "MÉTODOS PRIVADOS"
+
         private void AtualizeTela()
         {
-            TipoDeTracos.ItemsSource = new[] { EnumTipoDeTracos.RETA, EnumTipoDeTracos.ELIPSE, EnumTipoDeTracos.CIRCUNFERENCIA };
+            TipoDeTracos.ItemsSource = new[] { EnumTipoDeTraco.RETA, EnumTipoDeTraco.ELIPSE, EnumTipoDeTraco.CIRCUNFERENCIA };
         }
+
+        #endregion
     }
 }

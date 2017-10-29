@@ -17,7 +17,7 @@
                            Margin="32,10,40,39"
                            MouseLeftButtonDown="AoClicarNaGrade" 
                            Background="White"/>
-            <ComboBox x:Name="TipoDeTracos" HorizontalAlignment="Left" Margin="32,520,0,0" VerticalAlignment="Top" Width="500"/>
+            <ComboBox x:Name="TipoDeTracos" SelectionChanged="AoSelecionarTipoDeTracos" HorizontalAlignment="Left" Margin="32,520,0,0" VerticalAlignment="Top" Width="500"/>
         </Grid>
     </Grid>
 </Window>

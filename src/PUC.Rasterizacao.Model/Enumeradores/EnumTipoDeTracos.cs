@@ -2,7 +2,7 @@
 
 namespace PUC.Rasterizacao.Model.Enumeradores
 {
-    public enum EnumTipoDeTracos
+    public enum EnumTipoDeTraco
     {
         [Description("Reta")]
         RETA,
