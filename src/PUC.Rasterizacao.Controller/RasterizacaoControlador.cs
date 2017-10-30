@@ -90,6 +90,7 @@ namespace PUC.Rasterizacao.Controller
 
         #endregion
 
+        //// TODO: Método grande, refatorar!
         private void AdicionePixelParaCircunferencia(Point ponto)
         {
             if (PontosDaCircunferencia.Count < QUANTIDADE_MAXIMA_DE_PONTOS_PARA_CIRCUNFERENCIA)
@@ -118,21 +119,6 @@ namespace PUC.Rasterizacao.Controller
 
                 PontosDaCircunferencia.Clear();
             }
-        }
-
-        private double CalculeDistanciaEntreDoisPontos(Point centro, Point extremo)
-        {
-            var x1 = centro.X;
-            var x2 = extremo.X;
-            var y1 = centro.Y;
-            var y2 = extremo.Y;
-
-            var x = Math.Pow(x1 - x2, 2);
-            var y = Math.Pow(y1 - y2, 2);
-
-            var distancia = Math.Sqrt(x + y);
-
-            return distancia + 1;
         }
 
         private void AdicionePixelParaElipse(Point ponto)
@@ -176,6 +162,21 @@ namespace PUC.Rasterizacao.Controller
             {
                 Tela.AdicionePixelNaGrade(ponto);
             }
+        }
+
+        private double CalculeDistanciaEntreDoisPontos(Point centro, Point extremo)
+        {
+            var x1 = centro.X;
+            var x2 = extremo.X;
+            var y1 = centro.Y;
+            var y2 = extremo.Y;
+
+            var x = Math.Pow(x1 - x2, 2);
+            var y = Math.Pow(y1 - y2, 2);
+
+            var distancia = Math.Sqrt(x + y);
+
+            return distancia + 1;
         }
     }
 }
