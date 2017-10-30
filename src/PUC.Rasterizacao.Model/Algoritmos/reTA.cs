@@ -11,42 +11,66 @@ namespace PUC.Rasterizacao.Model.Algoritmos
         {
             var pontos = new List<Point>();
 
+            bool troca = false;
             int y = y1;
             int x = x1;
 
-            int dx = Math.Abs(x2 - x1);
-            int dy = Math.Abs(y2 - y1);
+            int deltaX = Math.Abs(x2 - x1);
+            int deltaY = Math.Abs(y2 - y1);
+            int sinalX = ObtenhaSinal(x2 - x1);
+            int sinalY = ObtenhaSinal(y2 - y1);
 
-            int p = 2 * dy - dx;
-
-            if (x1 > x2)
+            if (deltaY > deltaX)
             {
-                return CalculePontos(x2, y2, x1, y1);
+                var tmp = deltaX;
+                deltaX = deltaY;
+                deltaY = tmp;
+                troca = true;
             }
 
-            while (x < x2)
+            int erro = 2 * deltaY - deltaX;
+
+            for (int i = 0; i < deltaX; i++)
             {
-                if (p >= 0)
+                pontos.Add(new Point(x, y));
+
+                while (erro >= 0)
                 {
-                    y++;
-                    p = p + 2 * dy - 2 * dx;
+                    if (troca)
+                    {
+                        x += sinalX;
+                    }
+                    else
+                    {
+                        y += sinalY;
+                    }
+
+                    erro = erro - 2 * deltaX;
+                }
+
+                if (troca)
+                {
+                    y += sinalY;
                 }
                 else
                 {
-                    p = p + 2 * dy;
+                    x += sinalX;
                 }
-                x++;
 
-                pontos.Add(new Point(x, y));
+                erro = erro + 2 * deltaY;
             }
 
             return pontos;
         }
 
-        ///TODO: Método provisório
         public static List<Point> Calcule(Point inicio, Point fim)
         {
             return CalculePontos((int)inicio.X, (int)inicio.Y, (int)fim.X, (int)fim.Y);
+        }
+
+        private static int ObtenhaSinal(int numero)
+        {
+            return numero < 0 ? -1 : 1;
         }
     }
 }

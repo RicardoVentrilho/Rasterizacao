@@ -11,9 +11,9 @@ namespace PUC.Rasterizacao.Model.Algoritmos
 
             int x = (int)raio - 1;
             int y = 0;
-            int dx = 1;
-            int dy = 1;
-            int err = dx - ((int)raio << 1);
+            int deltaX = 1;
+            int deltaY = 1;
+            int err = deltaX - ((int)raio << 1);
 
             while (x >= y)
             {
@@ -29,14 +29,14 @@ namespace PUC.Rasterizacao.Model.Algoritmos
                 if (err <= 0)
                 {
                     y++;
-                    err += dy;
-                    dy += 2;
+                    err += deltaY;
+                    deltaY += 2;
                 }
                 if (err > 0)
                 {
                     x--;
-                    dx += 2;
-                    err += (-(int)raio << 1) + dx;
+                    deltaX += 2;
+                    err += (-(int)raio << 1) + deltaX;
                 }
             }
 
