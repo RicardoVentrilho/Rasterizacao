@@ -108,10 +108,31 @@ namespace PUC.Rasterizacao.Controller
                 var centro = PontosDaCircunferencia[(int)EnumPosicao.PRIMEIRO];
                 var extremo = PontosDaCircunferencia[(int)EnumPosicao.SEGUNDO];
 
-                var raio = Tela.CalculeDistanciaEntreDoisPontos(centro, extremo);
+                var raio = CalculeDistanciaEntreDoisPontos(centro, extremo);
 
-                throw new NotImplementedException();
+                var trajeto = Circunferencia.CalculePontos(centro, raio);
+
+                DesenheTrajeto(trajeto);
+
+                //// TODO: Adicione circunferencia na tela.
+
+                PontosDaCircunferencia.Clear();
             }
+        }
+
+        private double CalculeDistanciaEntreDoisPontos(Point centro, Point extremo)
+        {
+            var x1 = centro.X;
+            var x2 = extremo.X;
+            var y1 = centro.Y;
+            var y2 = extremo.Y;
+
+            var x = Math.Pow(x1 - x2, 2);
+            var y = Math.Pow(y1 - y2, 2);
+
+            var distancia = Math.Sqrt(x + y);
+
+            return distancia + 1;
         }
 
         private void AdicionePixelParaElipse(Point ponto)

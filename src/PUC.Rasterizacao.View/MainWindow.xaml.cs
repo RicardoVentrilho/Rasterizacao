@@ -2,7 +2,6 @@
 using PUC.Rasterizacao.Model.Enumeradores;
 using PUC.Rasterizacao.Model.Interfaces;
 using PUC.Rasterizacao.View.Infraestrutura;
-using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -64,11 +63,6 @@ namespace PUC.Rasterizacao.View
             {
                 Grade.Atualize();
             });
-        }
-
-        public double CalculeDistanciaEntreDoisPontos(Point centro, Point extremo)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion
