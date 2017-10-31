@@ -13,7 +13,7 @@ namespace PUC.Rasterizacao.Model.Algoritmos
             int y = 0;
             int deltaX = 1;
             int deltaY = 1;
-            int err = deltaX - ((int)raio << 1);
+            int erro = deltaX - ((int)raio << 1);
 
             while (x >= y)
             {
@@ -26,17 +26,17 @@ namespace PUC.Rasterizacao.Model.Algoritmos
                 pontos.Add(new Point(centro.X + y, centro.Y - x));
                 pontos.Add(new Point(centro.X + x, centro.Y - y));
 
-                if (err <= 0)
+                if (erro <= 0)
                 {
                     y++;
-                    err += deltaY;
+                    erro += deltaY;
                     deltaY += 2;
                 }
-                if (err > 0)
+                else
                 {
                     x--;
                     deltaX += 2;
-                    err += (-(int)raio << 1) + deltaX;
+                    erro += (-(int)raio << 1) + deltaX;
                 }
             }
 

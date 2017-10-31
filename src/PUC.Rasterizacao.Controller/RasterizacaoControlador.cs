@@ -1,10 +1,10 @@
-﻿using PUC.Rasterizacao.Model.Algoritmos;
-using PUC.Rasterizacao.Model.Enumeradores;
-using PUC.Rasterizacao.Model.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using PUC.Rasterizacao.Model.Algoritmos;
+using PUC.Rasterizacao.Model.Enumeradores;
+using PUC.Rasterizacao.Model.Interfaces;
 
 namespace PUC.Rasterizacao.Controller
 {
@@ -49,7 +49,10 @@ namespace PUC.Rasterizacao.Controller
 
         public EnumTipoDeTraco TipoDeTraco
         {
-            get => _TipoDeTraco;
+            get
+            {
+                return _TipoDeTraco;
+            }
             set
             {
                 Limpe();
@@ -109,7 +112,7 @@ namespace PUC.Rasterizacao.Controller
                 var centro = PontosDaCircunferencia[(int)EnumPosicao.PRIMEIRO];
                 var extremo = PontosDaCircunferencia[(int)EnumPosicao.SEGUNDO];
 
-                var raio = CalculeDistanciaEntreDoisPontos(centro, extremo);
+                var raio = CalculeDistanciaEntreDoisPontos(centro, extremo) + 1; ////TODO: Verificar existência do + 1
 
                 var trajeto = Circunferencia.CalculePontos(centro, raio);
 
@@ -123,7 +126,34 @@ namespace PUC.Rasterizacao.Controller
 
         private void AdicionePixelParaElipse(Point ponto)
         {
-            throw new NotImplementedException();
+            if (PontosDaElipse.Count < QUANTIDADE_MAXIMA_DE_PONTOS_PARA_ELIPSE)
+            {
+                if (!PontosDaElipse.Any())
+                {
+                    Tela.Limpe();
+                }
+
+                PontosDaElipse.Add(ponto);
+                Tela.AdicionePixelNaGrade(ponto);
+            }
+
+            if (PontosDaElipse.Count == QUANTIDADE_MAXIMA_DE_PONTOS_PARA_ELIPSE)
+            {
+                var primeiroPonto = PontosDaElipse[(int)EnumPosicao.PRIMEIRO];
+                var segundoPonto = PontosDaElipse[(int)EnumPosicao.SEGUNDO];
+                var terceiroPonto = PontosDaElipse[(int)EnumPosicao.TERCEIRO];
+
+                var altura = CalculeDistanciaEntreDoisPontos(primeiroPonto, segundoPonto);
+                var largura = CalculeDistanciaEntreDoisPontos(primeiroPonto, terceiroPonto);
+
+                var trajeto = Elipse.CalculePontos(primeiroPonto, (int)altura, (int)largura);
+
+                DesenheTrajeto(trajeto);
+
+                //// TODO: Adicione elipse na tela.
+
+                PontosDaElipse.Clear();
+            }
         }
 
         //// TODO: Método grande, refatorar!
@@ -146,7 +176,7 @@ namespace PUC.Rasterizacao.Controller
                 var inicio = PontosDaLinha[(int)EnumPosicao.PRIMEIRO];
                 var fim = PontosDaLinha[(int)EnumPosicao.SEGUNDO];
 
-                var trajeto = Reta.Calcule(inicio, fim);
+                var trajeto = Reta.CalculePontos(inicio, fim);
 
                 DesenheTrajeto(trajeto);
 
@@ -176,7 +206,7 @@ namespace PUC.Rasterizacao.Controller
 
             var distancia = Math.Sqrt(x + y);
 
-            return distancia + 1;
+            return distancia;
         }
     }
 }

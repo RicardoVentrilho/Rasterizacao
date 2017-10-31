@@ -63,7 +63,7 @@ namespace PUC.Rasterizacao.Model.Algoritmos
             return pontos;
         }
 
-        public static List<Point> Calcule(Point inicio, Point fim)
+        public static List<Point> CalculePontos(Point inicio, Point fim)
         {
             return CalculePontos((int)inicio.X, (int)inicio.Y, (int)fim.X, (int)fim.Y);
         }
